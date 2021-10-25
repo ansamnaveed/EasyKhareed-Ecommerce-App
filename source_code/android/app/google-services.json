@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "835571763337",
-    "project_id": "active-ecommerce-flutter-app",
-    "storage_bucket": "active-ecommerce-flutter-app.appspot.com"
+    "project_number": "257582019341",
+    "project_id": "easykhareed-ecommerce-app",
+    "storage_bucket": "easykhareed-ecommerce-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:835571763337:android:f6a0e8a9517a55ff8f5e58",
+        "mobilesdk_app_id": "1:257582019341:android:28c76cc78a3f93df66b644",
         "android_client_info": {
-          "package_name": "com.activeitzone.active_ecommerce_flutter_app"
+          "package_name": "com.einnovention.easy_khareed"
         }
       },
       "oauth_client": [
         {
-          "client_id": "835571763337-6e7l7rab6gc6p2vlr35lv1tmer4dekn4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.activeitzone.active_ecommerce_flutter_app",
-            "certificate_hash": "b13a53cff89a07171f9b6e148e24697cec03d52f"
-          }
-        },
-        {
-          "client_id": "835571763337-fct94i4ip6h7det4hb8cs322hp3pffrq.apps.googleusercontent.com",
+          "client_id": "257582019341-7ccu10439dp2ghmg689t76a3m3locbr6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCFiPAQi3ccahUffJl-9S1T5Coss3y0KXg"
+          "current_key": "AIzaSyCBuE2S8NAvMLX_YkB4S5BFXPe9Xn5UW-M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "835571763337-fct94i4ip6h7det4hb8cs322hp3pffrq.apps.googleusercontent.com",
+              "client_id": "257582019341-7ccu10439dp2ghmg689t76a3m3locbr6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

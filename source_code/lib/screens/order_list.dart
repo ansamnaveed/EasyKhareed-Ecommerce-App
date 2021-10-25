@@ -337,7 +337,7 @@ class _OrderListState extends State<OrderList> {
 
   buildAppBar(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(104.0),
+      preferredSize: Size.fromHeight(110.0),
       child: AppBar(
           centerTitle: false,
           backgroundColor: Colors.white,

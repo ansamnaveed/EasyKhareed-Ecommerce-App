@@ -6,7 +6,7 @@ import 'package:active_ecommerce_flutter/custom/input_decorations.dart';
 import 'package:active_ecommerce_flutter/custom/intl_phone_input.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:active_ecommerce_flutter/addon_config.dart';
-import 'package:active_ecommerce_flutter/screens/otp.dart';
+import 'package:active_ecommerce_flutter/screens/main.dart';
 import 'package:active_ecommerce_flutter/screens/login.dart';
 import 'package:active_ecommerce_flutter/custom/toast_component.dart';
 import 'package:toast/toast.dart';
@@ -97,10 +97,7 @@ class _RegistrationState extends State<Registration> {
       ToastComponent.showDialog(signupResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return Otp(
-          verify_by: _register_by,
-          user_id: signupResponse.user_id,
-        );
+        return Login();
       }));
     }
   }
@@ -194,23 +191,23 @@ class _RegistrationState extends State<Registration> {
                                           hint_text: "johndoe@example.com"),
                                 ),
                               ),
-                              AddonConfig.otp_addon_installed
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _register_by = "phone";
-                                        });
-                                      },
-                                      child: Text(
-                                        "or, Register with a phone number",
-                                        style: TextStyle(
-                                            color: MyTheme.accent_color,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline),
-                                      ),
-                                    )
-                                  : Container()
+                              // AddonConfig.otp_addon_installed
+                              //     ? GestureDetector(
+                              //         onTap: () {
+                              //           setState(() {
+                              //             _register_by = "phone";
+                              //           });
+                              //         },
+                              //         child: Text(
+                              //           "or, Register with a phone number",
+                              //           style: TextStyle(
+                              //               color: MyTheme.accent_color,
+                              //               fontStyle: FontStyle.italic,
+                              //               decoration:
+                              //                   TextDecoration.underline),
+                              //         ),
+                              //       )
+                              //     : Container()
                             ],
                           ),
                         )

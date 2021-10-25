@@ -67,7 +67,6 @@ dependencies:
   one_context: ^0.5.0
   url_launcher: ^5.7.10
   
-  
 
 dev_dependencies:
   flutter_test:

@@ -9,19 +9,12 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 
-
-
-
-
-
 class Main extends StatefulWidget {
   @override
   _MainState createState() => _MainState();
 }
 
 class _MainState extends State<Main> {
-
-
   int _currentIndex = 0;
   var _children = [
     Home(),
@@ -45,10 +38,7 @@ class _MainState extends State<Main> {
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.initState();
-
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +60,18 @@ class _MainState extends State<Main> {
                   icon: new Image.asset('assets/square_logo.png'),
                   tooltip: 'Action',
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return Filter(
                         selected_filter: "sellers",
                       );
                     }));
                   })),
-          elevation: 0.0,
+          elevation: 1.0,
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
+        color: Colors.white,
         clipBehavior: Clip.antiAlias,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
@@ -88,7 +79,7 @@ class _MainState extends State<Main> {
             type: BottomNavigationBarType.fixed,
             onTap: onTapped,
             currentIndex: _currentIndex,
-            backgroundColor: Colors.white.withOpacity(0.8),
+            backgroundColor: Colors.white.withOpacity(1),
             fixedColor: Theme.of(context).accentColor,
             unselectedItemColor: Color.fromRGBO(153, 153, 153, 1),
             items: [

@@ -112,7 +112,8 @@ class _AddressState extends State<Address> {
         _selected_city_name_list_for_update.add(address.city);
         _selected_city_list_for_update.add(getCityByPartialName(address.city));
         _selected_country_name_list_for_update.add(address.country);
-        _selected_country_list_for_update.add(getCountryByPartialName(address.country));
+        _selected_country_list_for_update
+            .add(getCountryByPartialName(address.country));
       });
     }
     setState(() {});
@@ -295,8 +296,7 @@ class _AddressState extends State<Address> {
     afterAddingAnAddress();
   }
 
-  onAddressUpdate(context,index, id) async {
-
+  onAddressUpdate(context, index, id) async {
     var address = _addressControllerListForUpdate[index].text.toString();
     var postal_code = _postalCodeControllerListForUpdate[index].text.toString();
     var phone = _phoneControllerListForUpdate[index].text.toString();
@@ -323,13 +323,14 @@ class _AddressState extends State<Address> {
       return;
     }
 
-    var addressUpdateResponse = await AddressRepository().getAddressUpdateResponse(
-        id,
-        address,
-        _selected_country_name_list_for_update[index],
-        _selected_city_name_list_for_update[index],
-        postal_code,
-        phone);
+    var addressUpdateResponse = await AddressRepository()
+        .getAddressUpdateResponse(
+            id,
+            address,
+            _selected_country_name_list_for_update[index],
+            _selected_city_name_list_for_update[index],
+            postal_code,
+            phone);
 
     if (addressUpdateResponse.result == false) {
       ToastComponent.showDialog(addressUpdateResponse.message, context,
@@ -402,8 +403,10 @@ class _AddressState extends State<Address> {
 
   Future buildShowAddFormDialog(BuildContext context) {
     return showDialog(
+        barrierDismissible: false,
+        useRootNavigator: false,
         context: context,
-        builder: (_) => AlertDialog(
+        builder: (context) => AlertDialog(
               insetPadding: EdgeInsets.symmetric(horizontal: 10),
               contentPadding: EdgeInsets.only(
                   top: 36.0, left: 36.0, right: 36.0, bottom: 2.0),
@@ -681,7 +684,7 @@ class _AddressState extends State<Address> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pop(false);
                         },
                       ),
                     ),
@@ -843,7 +846,8 @@ class _AddressState extends State<Address> {
                             onChanged: (City city) {
                               setState(() {
                                 _selected_city_list_for_update[index] = city;
-                                _selected_city_name_list_for_update[index] = city.name;
+                                _selected_city_name_list_for_update[index] =
+                                    city.name;
                               });
                             },
                           ),
@@ -860,7 +864,8 @@ class _AddressState extends State<Address> {
                         child: Container(
                           height: 40,
                           child: TextField(
-                            controller: _postalCodeControllerListForUpdate[index],
+                            controller:
+                                _postalCodeControllerListForUpdate[index],
                             autofocus: false,
                             decoration: InputDecoration(
                                 hintText: "Enter Postal Code",
@@ -902,7 +907,8 @@ class _AddressState extends State<Address> {
                             maxHeight: 300,
                             label: "Select a country",
                             showSearchBox: true,
-                            selectedItem: _selected_country_list_for_update[index],
+                            selectedItem:
+                                _selected_country_list_for_update[index],
                             dropdownSearchDecoration: InputDecoration(
                                 hintText: "Enter Postal Code",
                                 hintStyle: TextStyle(
@@ -927,8 +933,10 @@ class _AddressState extends State<Address> {
                                 contentPadding: EdgeInsets.only(left: 8.0)),
                             onChanged: (Country country) {
                               setState(() {
-                                _selected_country_list_for_update[index] = country;
-                                _selected_country_name_list_for_update[index] = country.name;
+                                _selected_country_list_for_update[index] =
+                                    country;
+                                _selected_country_name_list_for_update[index] =
+                                    country.name;
                               });
                             },
                           ),
@@ -1022,7 +1030,8 @@ class _AddressState extends State<Address> {
                               fontWeight: FontWeight.w600),
                         ),
                         onPressed: () {
-                          onAddressUpdate(context,index,_shippingAddressList[index].id);
+                          onAddressUpdate(
+                              context, index, _shippingAddressList[index].id);
                         },
                       ),
                     )
@@ -1291,27 +1300,31 @@ class _AddressState extends State<Address> {
                     ),
                   ),
                 )),
-            OtherConfig.USE_GOOGLE_MAP? Positioned(
-                right: 0,
-                top: 80.0,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return MapLocation(address: _shippingAddressList[index]);
-                    })).then((value) {
-                      onPopped(value);
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 12.0, left: 16.0, right: 16.0, bottom: 16.0),
-                    child: Icon(
-                      Icons.location_on,
-                      color: MyTheme.dark_grey,
-                      size: 16,
-                    ),
-                  ),
-                )):Container()
+            OtherConfig.USE_GOOGLE_MAP
+                ? Positioned(
+                    right: 0,
+                    top: 80.0,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return MapLocation(
+                              address: _shippingAddressList[index]);
+                        })).then((value) {
+                          onPopped(value);
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 12.0, left: 16.0, right: 16.0, bottom: 16.0),
+                        child: Icon(
+                          Icons.location_on,
+                          color: MyTheme.dark_grey,
+                          size: 16,
+                        ),
+                      ),
+                    ))
+                : Container()
           ],
         ),
       ),

@@ -82,6 +82,8 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
     } else {
+      
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Main()));
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       AuthHelper().setUserData(loginResponse);
@@ -104,7 +106,6 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
       }
       //push norification ends
 
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Main()));
     }
   }
 
@@ -274,23 +275,23 @@ _launchURL() async {
                                           hint_text: "johndoe@example.com"),
                                 ),
                               ),
-                              AddonConfig.otp_addon_installed
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _login_by = "phone";
-                                        });
-                                      },
-                                      child: Text(
-                                        "or, Login with a phone number",
-                                        style: TextStyle(
-                                            color: MyTheme.accent_color,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline),
-                                      ),
-                                    )
-                                  : Container()
+                              // AddonConfig.otp_addon_installed
+                              //     ? GestureDetector(
+                              //         onTap: () {
+                              //           setState(() {
+                              //             _login_by = "phone";
+                              //           });
+                              //         },
+                              //         child: Text(
+                              //           "or, Login with a phone number",
+                              //           style: TextStyle(
+                              //               color: MyTheme.accent_color,
+                              //               fontStyle: FontStyle.italic,
+                              //               decoration:
+                              //                   TextDecoration.underline),
+                              //         ),
+                              //       )
+                              //     : Container()
                             ],
                           ),
                         )
