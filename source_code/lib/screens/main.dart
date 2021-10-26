@@ -57,7 +57,7 @@ class _MainState extends State<Main> {
           child: Container(
               margin: EdgeInsets.all(0.0),
               child: IconButton(
-                  icon: new Image.asset('assets/square_logo.png'),
+                  icon: new Image.asset('assets/easykhareed.png'),
                   tooltip: 'Action',
                   onPressed: () {
                     Navigator.push(context,

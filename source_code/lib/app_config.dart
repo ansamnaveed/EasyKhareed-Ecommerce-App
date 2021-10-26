@@ -30,20 +30,19 @@
 //   //static const String BASE_PATH = "https://tosoviti.s3.ap-southeast-2.amazonaws.com/";
 // }
 
-
-
 import 'package:flutter/material.dart';
 
 var this_year = DateTime.now().year.toString();
 
 class AppConfig {
-  static String copyright_text = "Easy Khareed " + this_year; //this shows in the splash screen
+  static String copyright_text =
+      "Easy Khareed " + this_year; //this shows in the splash screen
   static String app_name = "Easy Khareed"; //this shows in the splash screen
   static String purchase_code = "233433";
 
   //configure this
   static const bool HTTPS = true;
- //easykhareeddev.einnovention.tech/api/allProducts
+  //easykhareeddev.einnovention.tech/api/allProducts
   //configure this
   static const DOMAIN_PATH = "easykhareed.com";
   //static const DOMAIN_PATH = "demo.activeitzone.com/ecommerce_flutter_demo";
@@ -60,6 +59,6 @@ class AppConfig {
   //configure this if you are using amazon s3 like services
   //give direct link to file like https://[[bucketname]].s3.ap-southeast-1.amazonaws.com/
   //otherwise do not change anythink
-  
-  static const String BASE_PATH = "${RAW_BASE_URL}/${PUBLIC_FOLDER}/";
+
+  static const String BASE_PATH = "${RAW_BASE_URL}/";
 }

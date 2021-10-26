@@ -24,8 +24,6 @@ import 'dart:io';
 import 'package:active_ecommerce_flutter/helpers/shared_value_helper.dart';
 import 'package:active_ecommerce_flutter/repositories/profile_repositories.dart';
 
-
-
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -36,7 +34,7 @@ class _LoginState extends State<Login> {
   String initialCountry = 'US';
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'US', dialCode: "+1");
   String _phone = "";
-var _url = 'https://easykhareeddev.einnovention.tech/';
+  var _url = 'https://easykhareeddev.einnovention.tech/';
   //controllers
   TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -82,8 +80,7 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
     } else {
-      
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Main()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Main()));
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       AuthHelper().setUserData(loginResponse);
@@ -101,14 +98,13 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
         if (is_logged_in.value == true) {
           // update device token
           var deviceTokenUpdateResponse =
-          await ProfileRepository().getDeviceTokenUpdateResponse(fcmToken);
+              await ProfileRepository().getDeviceTokenUpdateResponse(fcmToken);
         }
       }
       //push norification ends
 
     }
   }
-
 
   onPressedFacebookLogin() async {
     final facebookLogin = FacebookLogin();
@@ -155,7 +151,7 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
       }));
     }
   }
-  
+
 // void _launchURL() async =>
 //     await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 
@@ -198,14 +194,15 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
       });
     });
   }
-_launchURL() async {
-  const url = 'https://easykhareeddev.einnovention.tech';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+
+  _launchURL() async {
+    const url = 'https://easykhareeddev.einnovention.tech';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -275,23 +272,23 @@ _launchURL() async {
                                           hint_text: "johndoe@example.com"),
                                 ),
                               ),
-                              // AddonConfig.otp_addon_installed
-                              //     ? GestureDetector(
-                              //         onTap: () {
-                              //           setState(() {
-                              //             _login_by = "phone";
-                              //           });
-                              //         },
-                              //         child: Text(
-                              //           "or, Login with a phone number",
-                              //           style: TextStyle(
-                              //               color: MyTheme.accent_color,
-                              //               fontStyle: FontStyle.italic,
-                              //               decoration:
-                              //                   TextDecoration.underline),
-                              //         ),
-                              //       )
-                              //     : Container()
+                              AddonConfig.otp_addon_installed
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _login_by = "phone";
+                                        });
+                                      },
+                                      child: Text(
+                                        "or, Login with a phone number",
+                                        style: TextStyle(
+                                            color: MyTheme.accent_color,
+                                            fontStyle: FontStyle.italic,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                    )
+                                  : Container()
                             ],
                           ),
                         )
@@ -467,7 +464,7 @@ _launchURL() async {
                           ),
                         ),
                       ),
-                         Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Container(
                           height: 45,
@@ -495,7 +492,8 @@ _launchURL() async {
                         ),
                       ),
                       Visibility(
-                        visible: SocialConfig.allow_google_login || SocialConfig.allow_facebook_login,
+                        visible: SocialConfig.allow_google_login ||
+                            SocialConfig.allow_facebook_login,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Center(
@@ -535,8 +533,8 @@ _launchURL() async {
                                     },
                                     child: Container(
                                       width: 28,
-                                      child:
-                                          Image.asset("assets/facebook_logo.png"),
+                                      child: Image.asset(
+                                          "assets/facebook_logo.png"),
                                     ),
                                   ),
                                 ),
@@ -544,12 +542,12 @@ _launchURL() async {
                                   visible: false,
                                   child: InkWell(
                                     onTap: () {
-                                     // onPressedTwitterLogin();
+                                      // onPressedTwitterLogin();
                                     },
                                     child: Container(
                                       width: 28,
-                                      child:
-                                          Image.asset("assets/twitter_logo.png"),
+                                      child: Image.asset(
+                                          "assets/twitter_logo.png"),
                                     ),
                                   ),
                                 ),
