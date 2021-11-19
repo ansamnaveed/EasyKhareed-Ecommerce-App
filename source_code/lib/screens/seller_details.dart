@@ -616,7 +616,7 @@ class _SellerDetailsState extends State<SellerDetails> {
           ratingWidget: RatingWidget(
             full: Icon(FontAwesome.star, color: Colors.amber),
             empty:
-                Icon(FontAwesome.star, color: Color.fromRGBO(224, 224, 225, 1)),
+                Icon(FontAwesome.star, color: Color.fromRGBO(224, 224, 225, 1)), half: null,
           ),
           itemPadding: EdgeInsets.only(right: 4.0),
           onRatingUpdate: (rating) {

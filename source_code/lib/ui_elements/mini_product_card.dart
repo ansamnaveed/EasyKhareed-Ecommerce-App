@@ -49,7 +49,7 @@ class _MiniProductCardState extends State<MiniProductCard> {
               Padding(
                 padding: EdgeInsets.fromLTRB(8, 4, 8, 0),
                 child: Text(
-                  widget.name,
+                  "${widget.name}",
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -63,7 +63,7 @@ class _MiniProductCardState extends State<MiniProductCard> {
               Padding(
                 padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
                 child: Text(
-                  widget.price,
+                  "${widget.price}",
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,

@@ -73,7 +73,7 @@ class _FilterState extends State<Filter> {
   bool _filteredBrandsCalled = false;
   List<dynamic> _filterCategoryList = List();
   bool _filteredCategoriesCalled = false;
-    List<dynamic> _filterCitiesList = List();
+  List<dynamic> _filterCitiesList = List();
   bool _filteredCitiesCalled = false;
 
   //----------------------------------------
@@ -87,15 +87,15 @@ class _FilterState extends State<Filter> {
 
   List<dynamic> _brandList = [];
   bool _isBrandInitial = true;
-  int _brandPage = 1;  
-  int _totalBrandData = 0;  
+  int _brandPage = 1;
+  int _totalBrandData = 0;
   bool _showBrandLoadingContainer = false;
 
   List<dynamic> _citiesList = [];
   bool _isCitiesInitial = true;
   int _citiesPage = 1;
   int _totalCitiesData = 0;
-  int cityid=0;
+  int cityid = 0;
   bool _showCitiesLoadingContainer = false;
 
   List<dynamic> _shopList = [];
@@ -113,13 +113,12 @@ class _FilterState extends State<Filter> {
     setState(() {});
   }
 
-   fetchFilteredCities() async {
+  fetchFilteredCities() async {
     var filteredCitiesResponse = await CityRepository().getFilterPageCities();
     _filterCitiesList.addAll(filteredCitiesResponse.id);
     _filteredCitiesCalled = true;
     setState(() {});
   }
-
 
   fetchFilteredCategories() async {
     var filteredCategoriesResponse =
@@ -161,14 +160,14 @@ class _FilterState extends State<Filter> {
 
     fetchFilteredCategories();
     fetchFilteredBrands();
-     fetchFilteredCities();
+    fetchFilteredCities();
 
     if (_selectedFilter.option_key == "sellers") {
       fetchShopData();
     } else if (_selectedFilter.option_key == "brands") {
       fetchBrandData();
-    }else if(_selectedFilter.option_key == "cities"){
-       fetchCitiesData();
+    } else if (_selectedFilter.option_key == "cities") {
+      fetchCitiesData();
     } else {
       fetchProductData();
     }
@@ -207,7 +206,7 @@ class _FilterState extends State<Filter> {
         fetchShopData();
       }
     });
-     _citiesScrollController.addListener(() {
+    _citiesScrollController.addListener(() {
       if (_citiesScrollController.position.pixels ==
           _citiesScrollController.position.maxScrollExtent) {
         setState(() {
@@ -217,12 +216,9 @@ class _FilterState extends State<Filter> {
         fetchCitiesData();
       }
     });
-
-    
   }
 
   fetchProductData() async {
-    
     var productResponse = await ProductRepository().getFilteredProducts(
         page: _productPage,
         name: _searchKey,
@@ -250,7 +246,7 @@ class _FilterState extends State<Filter> {
 
   fetchCitiesData() async {
     var citiesResponse =
-        await CityRepository().getCities(name: _searchKey,page: _citiesPage);
+        await CityRepository().getCities(name: _searchKey, page: _citiesPage);
     _citiesList.addAll(citiesResponse.id);
     _isCitiesInitial = false;
     _totalCitiesData = citiesResponse.id as int;
@@ -266,6 +262,7 @@ class _FilterState extends State<Filter> {
     _showCitiesLoadingContainer = false;
     setState(() {});
   }
+
   fetchBrandData() async {
     var brandResponse =
         await BrandRepository().getBrands(page: _brandPage, name: _searchKey);
@@ -311,7 +308,7 @@ class _FilterState extends State<Filter> {
     fetchProductData();
   }
 
-   Future<void> _onCitiesListRefresh() async {
+  Future<void> _onCitiesListRefresh() async {
     resetCitiesList();
     fetchCitiesData();
   }
@@ -338,10 +335,10 @@ class _FilterState extends State<Filter> {
     } else if (_selectedFilter.option_key == "brands") {
       resetBrandList();
       fetchBrandData();
-    }else if(_selectedFilter.option_key == "cities"){
-       resetCitiesList();
-    fetchCitiesData();
-    } else{
+    } else if (_selectedFilter.option_key == "cities") {
+      resetCitiesList();
+      fetchCitiesData();
+    } else {
       resetProductList();
       fetchProductData();
     }
@@ -359,9 +356,9 @@ class _FilterState extends State<Filter> {
     } else if (_selectedFilter.option_key == "brands") {
       resetBrandList();
       fetchBrandData();
-    }else if(_selectedFilter.option_key == "cities"){
-       resetCitiesList();
-    fetchCitiesData();
+    } else if (_selectedFilter.option_key == "cities") {
+      resetCitiesList();
+      fetchCitiesData();
     } else {
       resetProductList();
       fetchProductData();
@@ -375,7 +372,7 @@ class _FilterState extends State<Filter> {
       items.add(
         DropdownMenuItem(
           value: which_filter_item,
-          child: Text(which_filter_item.name),
+          child: Text("${which_filter_item.name}"),
         ),
       );
     }
@@ -388,33 +385,35 @@ class _FilterState extends State<Filter> {
       width: double.infinity,
       color: Colors.white,
       child: Center(
-        child: Text(_totalProductData == _productList.length
-            ? "No More Products"
-            : "Loading More Products ..."),
+        child: _totalProductData == _productList.length
+            ? Text("No More Products")
+            : Text("Loading More Products ..."),
       ),
     );
   }
+
   Container buildCitiesLoadingContainer() {
     return Container(
       height: _showCitiesLoadingContainer ? 36 : 0,
       width: double.infinity,
       color: Colors.white,
       child: Center(
-        child: Text(_totalCitiesData == _citiesList.length
-            ? "No More Cities"
-            : "Loading More Cities ..."),
+        child: _totalCitiesData == _citiesList.length
+            ? Text("No More Cities")
+            : Text("Loading More Cities ..."),
       ),
     );
   }
+
   Container buildBrandLoadingContainer() {
     return Container(
       height: _showBrandLoadingContainer ? 36 : 0,
       width: double.infinity,
       color: Colors.white,
       child: Center(
-        child: Text(_totalBrandData == _brandList.length
-            ? "No More Brands"
-            : "Loading More Brands ..."),
+        child: _totalBrandData == _brandList.length
+            ? Text("No More Brands")
+            : Text("Loading More Brands ..."),
       ),
     );
   }
@@ -425,9 +424,9 @@ class _FilterState extends State<Filter> {
       width: double.infinity,
       color: Colors.white,
       child: Center(
-        child: Text(_totalShopData == _shopList.length
-            ? "No More Shops"
-            : "Loading More Shops ..."),
+        child: _totalShopData == _shopList.length
+            ? Text("No More Shops")
+            : Text("Loading More Shops ..."),
       ),
     );
   }
@@ -445,25 +444,27 @@ class _FilterState extends State<Filter> {
       backgroundColor: Colors.white,
       body: Stack(overflow: Overflow.visible, children: [
         _selectedFilter.option_key == 'product'
-            ? buildProductList():_selectedFilter.option_key == 'cities'
-            ? buildCitiesList()
-            : (_selectedFilter.option_key == 'brands'
-                ? buildBrandList()
-                : buildShopList()),
+            ? buildProductList()
+            : _selectedFilter.option_key == 'cities'
+                ? buildCitiesList()
+                : (_selectedFilter.option_key == 'brands'
+                    ? buildBrandList()
+                    : buildShopList()),
         Positioned(
           top: 0.0,
           left: 0.0,
           right: 0.0,
           child: buildAppBar(context),
         ),
-Align(
+        Align(
             alignment: Alignment.bottomCenter,
             child: _selectedFilter.option_key == 'product'
-                ? buildProductLoadingContainer(): _selectedFilter.option_key == 'cities'
-                ? buildCitiesLoadingContainer()
-                : (_selectedFilter.option_key == 'brands'
-                    ? buildBrandLoadingContainer()
-                    : buildShopLoadingContainer()))     
+                ? buildProductLoadingContainer()
+                : _selectedFilter.option_key == 'cities'
+                    ? buildCitiesLoadingContainer()
+                    : (_selectedFilter.option_key == 'brands'
+                        ? buildBrandLoadingContainer()
+                        : buildShopLoadingContainer()))
       ]),
     );
   }
@@ -531,7 +532,6 @@ Align(
                     context,
                     gravity: Toast.CENTER,
                     duration: Toast.LENGTH_LONG);
-            
           },
           child: Container(
             decoration: BoxDecoration(
@@ -928,7 +928,7 @@ Align(
                         : SingleChildScrollView(
                             child: buildFilterBrandsList(),
                           ),
-                     Padding(
+                    Padding(
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Text(
                         "Cities",
@@ -947,7 +947,7 @@ Align(
                             ),
                           )
                         : SingleChildScrollView(
-                             child: buildFilterCitiesList(),
+                            child: buildFilterCitiesList(),
                           ),
                   ]),
                 )
@@ -1025,7 +1025,7 @@ Align(
               (brand) => CheckboxListTile(
                 controlAffinity: ListTileControlAffinity.leading,
                 dense: true,
-                title: Text(brand.name),
+                title: Text("${brand.name}"),
                 value: _selectedBrands.contains(brand.id),
                 onChanged: (bool value) {
                   if (value) {
@@ -1056,7 +1056,7 @@ Align(
               (category) => CheckboxListTile(
                 controlAffinity: ListTileControlAffinity.leading,
                 dense: true,
-                title: Text(category.name),
+                title: Text("${category.name}"),
                 value: _selectedCategories.contains(category.id),
                 onChanged: (bool value) {
                   if (value) {
@@ -1076,8 +1076,7 @@ Align(
       ],
     );
   }
-  
-  
+
   ListView buildFilterCitiesList() {
     return ListView(
       padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
@@ -1089,7 +1088,7 @@ Align(
               (cities) => CheckboxListTile(
                 controlAffinity: ListTileControlAffinity.leading,
                 dense: true,
-                title: Text(cities.name),
+                title: Text("${cities.name}"),
                 value: _selectedCities.contains(cities.id),
                 onChanged: (bool value) {
                   if (value) {
@@ -1108,7 +1107,6 @@ Align(
       ],
     );
   }
-
 
   Container buildProductList() {
     return Container(
@@ -1177,8 +1175,6 @@ Align(
     }
   }
 
-
-  
   Container buildCitiesList() {
     return Container(
       child: Column(
@@ -1228,7 +1224,7 @@ Align(
                 itemBuilder: (context, index) {
                   // 3
                   return CitiesSquareCard(
-                    id:_citiesList[index].id,
+                    id: _citiesList[index].id,
                     image: _citiesList[index].image,
                     name: _citiesList[index].name,
                   );
@@ -1294,7 +1290,7 @@ Align(
                 itemBuilder: (context, index) {
                   // 3
                   return BrandSquareCard(
-                    id:_brandList[index].id,
+                    id: _brandList[index].id,
                     image: _brandList[index].logo,
                     name: _brandList[index].name,
                   );
@@ -1368,7 +1364,7 @@ Align(
                       }));
                     },
                     child: ShopSquareCard(
-                      id:_shopList[index].id,
+                      id: _shopList[index].id,
                       image: _shopList[index].logo,
                       name: _shopList[index].name,
                     ),

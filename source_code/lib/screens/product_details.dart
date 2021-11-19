@@ -232,7 +232,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     _singlePriceString = variantResponse.price_string;
 
     if (change_appbar_string) {
-      _appbarPriceString = "${variantResponse.variant} ${_singlePriceString}";
+      _appbarPriceString = "${variantResponse.variant} $_singlePriceString";
     }
 
     setState(() {});
@@ -301,7 +301,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       return;
     }
 
-    print(widget.id);
+    print("${widget.id}");
     print(_variant);
     print(user_id.value);
     print(_quantity);
@@ -502,7 +502,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         .getCreateConversationResponse(
             product_id: widget.id, title: title, message: message);
 
-    if(conversationCreateResponse.result == false){
+    if (conversationCreateResponse.result == false) {
       ToastComponent.showDialog("Could not create conversation", context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       return;
@@ -511,9 +511,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     Navigator.pop(context);
     sellerChatTitleController.clear();
     sellerChatMessageController.clear();
-    setState(() {
-
-    });
+    setState(() {});
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return Chat(
@@ -525,8 +523,6 @@ class _ProductDetailsState extends State<ProductDetails> {
     })).then((value) {
       onPopped(value);
     });
-
-
   }
 
   @override
@@ -588,7 +584,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     child: _productDetails != null
                         ? Text(
-                            _productDetails.name,
+                            "${_productDetails.name}",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: MyTheme.font_grey,
@@ -1070,7 +1066,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Color.fromRGBO(153, 153, 153, 1),
                   )),
               Text(
-                _productDetails.shop_name,
+                "${_productDetails.shop_name}",
                 style: TextStyle(
                     color: MyTheme.font_grey,
                     fontSize: 14,
@@ -1126,7 +1122,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ),
         Text(
-          _productDetails.currency_symbol + _totalPrice.toString(),
+          "${_productDetails.currency_symbol + _totalPrice}",
           style: TextStyle(
               color: MyTheme.accent_color,
               fontSize: 18.0,
@@ -1166,7 +1162,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   width: 36,
                   child: Center(
                       child: Text(
-                    _quantity.toString(),
+                    "$_quantity",
                     style: TextStyle(fontSize: 18, color: MyTheme.dark_grey),
                   ))),
               buildQuantityUpButton()
@@ -1176,7 +1172,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            "(${_stock} available)",
+            "($_stock available)",
             style: TextStyle(
                 color: Color.fromRGBO(152, 152, 153, 1), fontSize: 14),
           ),
@@ -1284,7 +1280,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: Container(
               width: 75,
               child: Text(
-                choice_options[choice_options_index].title,
+                "${choice_options[choice_options_index].title}",
                 style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
               ),
             ),
@@ -1337,7 +1333,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.0),
             child: Center(
               child: Text(
-                option,
+                "$option",
                 style: TextStyle(
                     color: _selectedChoices[choice_options_index] == option
                         ? MyTheme.accent_color
@@ -1459,7 +1455,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
             child: Text(
-              _productDetails.earn_point.toString(),
+              "${_productDetails.earn_point}",
               style: TextStyle(color: MyTheme.golden, fontSize: 12.0),
             ),
           ),
@@ -1484,7 +1480,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         _productDetails.has_discount
             ? Padding(
                 padding: EdgeInsets.only(right: 8.0),
-                child: Text(_productDetails.stroked_price,
+                child: Text("${_productDetails.stroked_price}",
                     style: TextStyle(
                         decoration: TextDecoration.lineThrough,
                         color: Color.fromRGBO(224, 224, 225, 1),
@@ -1493,7 +1489,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               )
             : Container(),
         Text(
-          _singlePriceString,
+          "$_singlePriceString",
           style: TextStyle(
               color: MyTheme.accent_color,
               fontSize: 18.0,
@@ -1521,7 +1517,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: Padding(
               padding: const EdgeInsets.only(top: 22.0),
               child: Text(
-                _appbarPriceString,
+                "$_appbarPriceString",
                 style: TextStyle(fontSize: 16, color: MyTheme.font_grey),
               ),
             )),
@@ -1608,7 +1604,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ratingWidget: RatingWidget(
             full: Icon(FontAwesome.star, color: Colors.amber),
             empty:
-                Icon(FontAwesome.star, color: Color.fromRGBO(224, 224, 225, 1)),
+                Icon(FontAwesome.star, color: Color.fromRGBO(224, 224, 225, 1)), half: null,
           ),
           itemPadding: EdgeInsets.only(right: 1.0),
           onRatingUpdate: (rating) {
@@ -1618,7 +1614,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: Text(
-            "(" + _productDetails.rating_count.toString() + ")",
+            "(" + _productDetails.rating_count + ")",
             style: TextStyle(
                 color: Color.fromRGBO(152, 152, 153, 1), fontSize: 14),
           ),

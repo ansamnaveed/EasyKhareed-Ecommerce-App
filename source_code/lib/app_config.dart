@@ -44,7 +44,7 @@ class AppConfig {
   static const bool HTTPS = true;
   //easykhareeddev.einnovention.tech/api/allProducts
   //configure this
-  static const DOMAIN_PATH = "easykhareed.com";
+  static const DOMAIN_PATH = "easykhareed.pk";
   //static const DOMAIN_PATH = "demo.activeitzone.com/ecommerce_flutter_demo";
   //static const DOMAIN_PATH = "adbuild.ae";
 
@@ -60,5 +60,5 @@ class AppConfig {
   //give direct link to file like https://[[bucketname]].s3.ap-southeast-1.amazonaws.com/
   //otherwise do not change anythink
 
-  static const String BASE_PATH = "${RAW_BASE_URL}/";
+  static const String BASE_PATH = "${RAW_BASE_URL}/${PUBLIC_FOLDER}/";
 }

@@ -51,10 +51,16 @@ class _MainState extends State<Main> {
         visible: MediaQuery.of(context).viewInsets.bottom ==
             0.0, // if the kyeboard is open then hide, else show
         child: FloatingActionButton(
-          backgroundColor: Colors.grey.shade300,
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          backgroundColor: Colors.white,
           onPressed: () {},
           tooltip: "start FAB",
           child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(width: .5, color: Colors.grey),
+              ),
               margin: EdgeInsets.all(0.0),
               child: IconButton(
                   icon: new Image.asset('assets/easykhareed.png'),
@@ -67,90 +73,97 @@ class _MainState extends State<Main> {
                       );
                     }));
                   })),
-          elevation: 1.0,
+          elevation: 0,
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        clipBehavior: Clip.antiAlias,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: onTapped,
-            currentIndex: _currentIndex,
-            backgroundColor: Colors.white.withOpacity(1),
-            fixedColor: Theme.of(context).accentColor,
-            unselectedItemColor: Color.fromRGBO(153, 153, 153, 1),
-            items: [
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/home.png",
-                    color: _currentIndex == 0
-                        ? Theme.of(context).accentColor
-                        : Color.fromRGBO(153, 153, 153, 1),
-                    height: 20,
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Home",
-                      style: TextStyle(fontSize: 12),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          color: Colors.grey,
+          clipBehavior: Clip.antiAlias,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              onTap: onTapped,
+              currentIndex: _currentIndex,
+              backgroundColor: Colors.white.withOpacity(1),
+              fixedColor: Theme.of(context).accentColor,
+              unselectedItemColor: Color.fromRGBO(153, 153, 153, 1),
+              items: [
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      "assets/home.png",
+                      color: _currentIndex == 0
+                          ? Theme.of(context).accentColor
+                          : Color.fromRGBO(153, 153, 153, 1),
+                      height: 20,
                     ),
-                  )),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/categories.png",
-                    color: _currentIndex == 1
-                        ? Theme.of(context).accentColor
-                        : Color.fromRGBO(153, 153, 153, 1),
-                    height: 20,
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Categories",
-                      style: TextStyle(fontSize: 12),
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Home",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      "assets/categories.png",
+                      color: _currentIndex == 1
+                          ? Theme.of(context).accentColor
+                          : Color.fromRGBO(153, 153, 153, 1),
+                      height: 20,
                     ),
-                  )),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.circle,
-                  color: Colors.transparent,
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Categories",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.circle,
+                    color: Colors.transparent,
+                  ),
+                  title: Text(""),
                 ),
-                title: Text(""),
-              ),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/cart.png",
-                    color: _currentIndex == 3
-                        ? Theme.of(context).accentColor
-                        : Color.fromRGBO(153, 153, 153, 1),
-                    height: 20,
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Cart",
-                      style: TextStyle(fontSize: 12),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      "assets/cart.png",
+                      color: _currentIndex == 3
+                          ? Theme.of(context).accentColor
+                          : Color.fromRGBO(153, 153, 153, 1),
+                      height: 20,
                     ),
-                  )),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/profile.png",
-                    color: _currentIndex == 4
-                        ? Theme.of(context).accentColor
-                        : Color.fromRGBO(153, 153, 153, 1),
-                    height: 20,
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Profile",
-                      style: TextStyle(fontSize: 12),
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Cart",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      "assets/profile.png",
+                      color: _currentIndex == 4
+                          ? Theme.of(context).accentColor
+                          : Color.fromRGBO(153, 153, 153, 1),
+                      height: 20,
                     ),
-                  )),
-            ],
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Profile",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       ),

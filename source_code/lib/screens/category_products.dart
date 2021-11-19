@@ -4,7 +4,6 @@ import 'package:active_ecommerce_flutter/ui_elements/product_card.dart';
 import 'package:active_ecommerce_flutter/repositories/product_repository.dart';
 import 'package:active_ecommerce_flutter/helpers/shimmer_helper.dart';
 
-
 class CategoryProducts extends StatefulWidget {
   CategoryProducts({Key key, this.category_name, this.category_id})
       : super(key: key);
@@ -16,7 +15,6 @@ class CategoryProducts extends StatefulWidget {
 }
 
 class _CategoryProductsState extends State<CategoryProducts> {
-
   ScrollController _scrollController = ScrollController();
   ScrollController _xcrollController = ScrollController();
   TextEditingController _searchController = TextEditingController();
@@ -46,7 +44,6 @@ class _CategoryProductsState extends State<CategoryProducts> {
         });
         _showLoadingContainer = true;
         fetchData();
-
       }
     });
   }
@@ -60,7 +57,8 @@ class _CategoryProductsState extends State<CategoryProducts> {
   }
 
   fetchData() async {
-    var productResponse = await ProductRepository().getCategoryProducts(id:widget.category_id,page: _page, name: _searchKey);
+    var productResponse = await ProductRepository().getCategoryProducts(
+        id: widget.category_id, page: _page, name: _searchKey);
     _productList.addAll(productResponse.products);
     _isInitial = false;
     _totalData = productResponse.meta.total;
@@ -77,14 +75,13 @@ class _CategoryProductsState extends State<CategoryProducts> {
     setState(() {});
   }
 
-  Future<void> _onRefresh() async{
+  Future<void> _onRefresh() async {
     reset();
     fetchData();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: buildAppBar(context),
@@ -104,10 +101,10 @@ class _CategoryProductsState extends State<CategoryProducts> {
       width: double.infinity,
       color: Colors.white,
       child: Center(
-        child: Text(_totalData == _productList.length
-            ? "No More Products"
-            : "Loading More Products ..."),
-      ),
+          // child: Text(_totalData == _productList.length
+          //     ? "No More Products"
+          //     : "Loading More Products ..."),
+          ),
     );
   }
 
@@ -131,12 +128,12 @@ class _CategoryProductsState extends State<CategoryProducts> {
           child: TextField(
             controller: _searchController,
             onTap: () {},
-            onChanged: (txt){
+            onChanged: (txt) {
               /*_searchKey = txt;
               reset();
               fetchData();*/
             },
-            onSubmitted: (txt){
+            onSubmitted: (txt) {
               _searchKey = txt;
               reset();
               fetchData();
@@ -178,14 +175,15 @@ class _CategoryProductsState extends State<CategoryProducts> {
           child: ShimmerHelper()
               .buildProductGridShimmer(scontroller: _scrollController));
     } else if (_productList.length > 0) {
-      return  RefreshIndicator(
+      return RefreshIndicator(
         color: MyTheme.accent_color,
         backgroundColor: Colors.white,
         displacement: 0,
         onRefresh: _onRefresh,
         child: SingleChildScrollView(
           controller: _xcrollController,
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           child: GridView.builder(
             // 2
             //addAutomaticKeepAlives: true,

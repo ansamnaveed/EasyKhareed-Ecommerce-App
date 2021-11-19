@@ -22,7 +22,6 @@ import 'package:toast/toast.dart';
 import 'package:active_ecommerce_flutter/ui_elements/product_card.dart';
 import 'package:active_ecommerce_flutter/helpers/shimmer_helper.dart';
 
-
 class Home extends StatefulWidget {
   Home({Key key, this.title, this.show_back_button = false, this.id})
       : super(key: key);
@@ -45,7 +44,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
-  
     super.initState();
 
     if (AppConfig.purchase_code == "") {
@@ -71,7 +69,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-
     super.dispose();
     pirated_logo_controller?.dispose();
   }
@@ -325,11 +322,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           8.0,
                           0.0,
                         ),
-                       
                         child: FutureBuilder(
                           future: buildHomeAllProducts(context),
                           builder: ((context, snap) {
-              
                             if (snap.hasData) {
                               return snap.data;
                             } else if (snap.hasError) {
@@ -384,82 +379,91 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ],
         ));
   }
-Future<Widget> buildHomeCities(context) async {
-  List<Widget> x = [];
 
-  var response = await http
-      .get(Uri.parse("https://easykhareed.com/api/cities"));
-  if (response.statusCode == 200) {
-    List data = json.decode(response.body)['data'];
+  Future<Widget> buildHomeCities(context) async {
+    List<Widget> x = [];
 
-    data.forEach((element) {
-      x.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 3),
-          child: GestureDetector(
+    var response = await http.get(
+      Uri.parse("https://easykhareed.pk/api/v2/cities"),
+    );
+    if (response.statusCode == 200) {
+      List data = json.decode(response.body)['data'];
+
+      data.forEach((element) {
+        x.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3),
+            child: GestureDetector(
               onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ProductCities(
-                      id: widget.id,
-                    );
-                  }));
-                },
-            child: Card(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                side: new BorderSide(color: MyTheme.light_grey, width: 1.0),
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              elevation: 0.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ProductCities(
+                        id: widget.id,
+                      );
+                    },
+                  ),
+                );
+              },
+              child: Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                  side: new BorderSide(color: MyTheme.light_grey, width: 1.0),
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                elevation: 0.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
                       //width: 100,
                       height: 100,
                       child: ClipRRect(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(16), bottom: Radius.zero),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/placeholder.png',
-                            image: '${element['image']}',
-                            fit: BoxFit.cover,
-                          ))),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
-                    child: Container(
-                      height: 32,
-                      child: Text(
-                        "${element['name']}",
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style:
-                            TextStyle(fontSize: 11, color: MyTheme.font_grey),
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16), bottom: Radius.zero),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/placeholder.png',
+                          image: '${element['image']}',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
+                      child: Container(
+                        height: 32,
+                        child: Text(
+                          "${element['name']}",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style:
+                              TextStyle(fontSize: 11, color: MyTheme.font_grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        );
+      });
+      return ListView(
+        scrollDirection: Axis.horizontal,
+        itemExtent: 120,
+        children: x,
       );
-    });
-    return ListView(
-    scrollDirection: Axis.horizontal,
-    itemExtent: 120,
-    children: x,
-  );
+    }
+    return Text("No Cities Available!");
   }
-  return Text("No Cities Available!");
-}
 
   Future<Widget> buildHomeAllProducts(context) async {
     List<Widget> x = [];
 
-    var response = await http.get(
-        Uri.parse("https://easykhareed.com/api/allProducts"));
+    var response =
+        await http.get(Uri.parse("https://easykhareed.com/api/allProducts"));
     if (response.statusCode == 200) {
       List data = json.decode(response.body)['data'];
 
@@ -473,10 +477,7 @@ Future<Widget> buildHomeCities(context) async {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return ProductDetails(
-                      
-                      id: element['id'],  
-                   
-                       
+                      id: element['id'],
                     );
                   }));
                 },
@@ -540,22 +541,19 @@ Future<Widget> buildHomeCities(context) async {
           ),
         );
       });
-        return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(8),
-      crossAxisSpacing: 10,
-      childAspectRatio: 0.7,
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      children: x,
-    );
+      return GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(8),
+        crossAxisSpacing: 10,
+        childAspectRatio: 0.7,
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        children: x,
+      );
     }
-     return Text("No Products Available!");
-  
+    return Text("No Products Available!");
   }
-  
- 
 
   buildHomeFeaturedProducts(context) {
     return FutureBuilder(
@@ -1073,4 +1071,3 @@ Future<Widget> buildHomeCities(context) async {
     );
   }
 }
-

@@ -8,7 +8,7 @@ class ShopSquareCard extends StatefulWidget {
   String image;
   String name;
 
-  ShopSquareCard({Key key,this.id, this.image, this.name}) : super(key: key);
+  ShopSquareCard({Key key, this.id, this.image, this.name}) : super(key: key);
 
   @override
   _ShopSquareCardState createState() => _ShopSquareCardState();
@@ -18,9 +18,11 @@ class _ShopSquareCardState extends State<ShopSquareCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SellerDetails(id: widget.id,);
+          return SellerDetails(
+            id: widget.id,
+          );
         }));
       },
       child: Card(
@@ -36,7 +38,7 @@ class _ShopSquareCardState extends State<ShopSquareCard> {
             children: <Widget>[
               Container(
                   width: double.infinity,
-                  height: ((MediaQuery.of(context).size.width - 24) /2) * .69,
+                  height: ((MediaQuery.of(context).size.width - 24) / 2) * .69,
                   child: ClipRRect(
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16), bottom: Radius.zero),
@@ -50,7 +52,7 @@ class _ShopSquareCardState extends State<ShopSquareCard> {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   child: Text(
-                    widget.name,
+                    "${widget.name}",
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,

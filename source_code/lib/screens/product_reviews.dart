@@ -161,7 +161,10 @@ class _ProductReviewsState extends State<ProductReviews> {
               ),
             ), //original
 
-            Align(alignment: Alignment.bottomCenter,child: buildBottomBar(context),),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: buildBottomBar(context),
+            ),
             Align(
                 alignment: Alignment.bottomCenter,
                 child: buildLoadingContainer()),
@@ -311,11 +314,10 @@ class _ProductReviewsState extends State<ProductReviews> {
                     allowHalfRating: false,
                     itemCount: 5,
                     ratingWidget: RatingWidget(
-                      
-                      
                       full: Icon(FontAwesome.star, color: Colors.amber),
                       empty: Icon(FontAwesome.star,
                           color: Color.fromRGBO(224, 224, 225, 1)),
+                      half: null,
                     ),
                     itemPadding: EdgeInsets.only(right: 1.0),
                     onRatingUpdate: (rating) {

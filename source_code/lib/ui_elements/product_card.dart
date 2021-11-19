@@ -4,13 +4,13 @@ import 'package:active_ecommerce_flutter/screens/product_details.dart';
 import 'package:active_ecommerce_flutter/app_config.dart';
 
 class ProductCard extends StatefulWidget {
-
   int id;
   String image;
   String name;
   String price;
 
-  ProductCard({Key key,this.id, this.image, this.name, this.price}) : super(key: key);
+  ProductCard({Key key, this.id, this.image, this.name, this.price})
+      : super(key: key);
 
   @override
   _ProductCardState createState() => _ProductCardState();
@@ -19,15 +19,17 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    print((MediaQuery.of(context).size.width - 48 ) / 2);
+    print((MediaQuery.of(context).size.width - 48) / 2);
     return InkWell(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ProductDetails(id: widget.id,);
+          return ProductDetails(
+            id: widget.id,
+          );
         }));
       },
       child: Card(
-         //clipBehavior: Clip.antiAliasWithSaveLayer,
+        //clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: RoundedRectangleBorder(
           side: new BorderSide(color: MyTheme.light_grey, width: 1.0),
           borderRadius: BorderRadius.circular(16.0),
@@ -40,9 +42,9 @@ class _ProductCardState extends State<ProductCard> {
               Container(
                   width: double.infinity,
                   //height: 158,
-                  height: (( MediaQuery.of(context).size.width - 49 ) / 2) + 2,
+                  height: ((MediaQuery.of(context).size.width - 49) / 2) + 2,
                   child: ClipRRect(
-                    clipBehavior: Clip.hardEdge,
+                      clipBehavior: Clip.hardEdge,
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16), bottom: Radius.zero),
                       child: FadeInImage.assetNetwork(
@@ -58,7 +60,7 @@ class _ProductCardState extends State<ProductCard> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
                       child: Text(
-                        widget.name,
+                        "${widget.name}",
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -72,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(16, 4, 16, 16),
                       child: Text(
-                        widget.price,
+                        "${widget.price}",
                         textAlign: TextAlign.left,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
