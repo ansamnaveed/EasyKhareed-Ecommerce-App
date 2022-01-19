@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
   String initialCountry = 'US';
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'US', dialCode: "+1");
   String _phone = "";
-var _url = 'https://easykhareeddev.einnovention.tech/';
+var _url = 'https://easykhareeddev.einnovention.co.uk/';
   //controllers
   TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -197,7 +197,7 @@ var _url = 'https://easykhareeddev.einnovention.tech/';
     });
   }
 _launchURL() async {
-  const url = 'https://easykhareeddev.einnovention.tech';
+  const url = 'https://easykhareeddev.einnovention.co.uk';
   if (await canLaunch(url)) {
     await launch(url);
   } else {

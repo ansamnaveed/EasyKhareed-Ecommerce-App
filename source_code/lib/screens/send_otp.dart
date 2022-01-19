@@ -8,16 +8,16 @@ import 'package:active_ecommerce_flutter/custom/toast_component.dart';
 import 'package:toast/toast.dart';
 
 
-class Otp extends StatefulWidget {
-  Otp({Key key, this.verify_by = "email",this.user_id}) : super(key: key);
+class SendOtp extends StatefulWidget {
+  SendOtp({Key key, this.verify_by = "email",this.user_id}) : super(key: key);
   final String verify_by;
   final int user_id;
 
   @override
-  _OtpState createState() => _OtpState();
+  _SendOtpState createState() => _SendOtpState();
 }
 
-class _OtpState extends State<Otp> {
+class _SendOtpState extends State<SendOtp> {
   //controllers
   TextEditingController _verificationCodeController = TextEditingController();
 
@@ -55,11 +55,11 @@ class _OtpState extends State<Otp> {
 
     var code = _verificationCodeController.text.toString();
 
-    if(code == ""){
-      ToastComponent.showDialog("Enter verification code", context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      return;
-    }
+    // if(code == ""){
+    //   ToastComponent.showDialog("Enter verification code", context,
+    //       gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+    //   return;
+    // }
 
     var confirmCodeResponse = await AuthRepository()
         .getConfirmCodeResponse(widget.user_id,code);

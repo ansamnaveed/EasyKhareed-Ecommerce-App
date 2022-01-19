@@ -7,11 +7,10 @@ import 'package:flutter/foundation.dart';
 
 class ProductRepository {
   Future<ProductMiniResponse> getFeaturedProducts() async {
-    final response = await http.get("https://easykhareed.com/api/v1/products/featured");
+    final response =
+        await http.get("https://easykhareed.com/api/v2/products/featured");
     return productMiniResponseFromJson(response.body);
   }
-   
-   
 
   Future<ProductMiniResponse> getBestSellingProducts() async {
     final response =

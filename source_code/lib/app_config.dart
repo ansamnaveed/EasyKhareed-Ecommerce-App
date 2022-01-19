@@ -42,7 +42,7 @@ class AppConfig {
 
   //configure this
   static const bool HTTPS = true;
-  //easykhareeddev.einnovention.tech/api/allProducts
+  //easykhareeddev.einnovention.co.uk/api/allProducts
   //configure this
   static const DOMAIN_PATH = "easykhareed.pk";
   //static const DOMAIN_PATH = "demo.activeitzone.com/ecommerce_flutter_demo";

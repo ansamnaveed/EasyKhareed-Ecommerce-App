@@ -463,7 +463,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     List<Widget> x = [];
 
     var response =
-        await http.get(Uri.parse("https://easykhareed.com/api/allProducts"));
+        await http.get(Uri.parse("https://easykhareed.com/api/v2/allProducts"));
     if (response.statusCode == 200) {
       List data = json.decode(response.body)['data'];
 
@@ -632,19 +632,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                                //width: 100,
-                                height: 100,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(16),
-                                        bottom: Radius.zero),
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder: 'assets/placeholder.png',
-                                      image: AppConfig.BASE_PATH +
-                                          featuredCategoryResponse
-                                              .categories[index].banner,
-                                      fit: BoxFit.cover,
-                                    ))),
+                              //width: 100,
+                              height: 100,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(16),
+                                    bottom: Radius.zero),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/placeholder.png',
+                                  image: AppConfig.BASE_PATH +
+                                      featuredCategoryResponse
+                                          .categories[index].banner,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
                               child: Container(
