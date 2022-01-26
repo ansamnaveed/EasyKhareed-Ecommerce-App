@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class AddonConfig{
   static bool club_point_addon_installed = true;
